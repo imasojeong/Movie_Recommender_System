@@ -17,7 +17,9 @@
     <div class="header">
         <h1 id="mainLink">MovieFlix</h1>
         <h1 id="allMovie">모든 영화</h1>
-        <input type="text" placeholder="Search...">
+        <form method="get" action="{{ url_for('search') }}">
+            <input type="text" name="search_query" placeholder="Search...">
+        </form>
         <button id="logoutButton">Logout</button>
     </div>
 
@@ -49,7 +51,7 @@
         });
 
         document.getElementById('logoutButton').addEventListener('click', function () {
-            window.location.href = "{{ url_for('start') }}";
+            window.location.href = "{{ url_for('logout') }}";
         });
 
         function openModalWithUrl(url) {
@@ -93,7 +95,7 @@
             document.getElementById('modal-content').innerHTML = "";
 
             // URL 원복 (새로고침 없이)
-            var originalUrl = "{{ url_for('allMovie') }}";
+            var originalUrl = "{{ url_for('all_movie') }}";
             window.history.pushState({ path: originalUrl }, '', originalUrl);
         });
 
